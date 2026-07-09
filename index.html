@@ -163,21 +163,6 @@ body {
 .pulse-soft { animation: pulse-soft 3s ease-in-out infinite; }
 .spin-slow { animation: spin-slow 30s linear infinite; }
 
-.product-card {
-  position: relative; border-radius: 24px; overflow: hidden;
-  background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
-  border: 1px solid rgba(255,255,255,0.08);
-  transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), border-color 0.5s;
-  transform-style: preserve-3d; will-change: transform; text-decoration: none; color: inherit;
-}
-.product-card:hover { border-color: rgba(139,92,246,0.3); }
-.product-card::before {
-  content: ''; position: absolute; inset: 0; pointer-events: none;
-  background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(139,92,246,0.18), transparent 50%);
-  opacity: 0; transition: opacity 0.4s;
-}
-.product-card:hover::before { opacity: 1; }
-
 .phone-mockup {
   position: relative; width: 220px; height: 460px; border-radius: 38px;
   background: linear-gradient(145deg, #1a1a2e, #0a0a1a);
@@ -218,11 +203,6 @@ body {
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .marquee-track { animation: marquee 30s linear infinite; }
 
-.cam-feed { position: relative; border-radius: 8px; overflow: hidden; background: #0a0a1a; border: 1px solid rgba(255,255,255,0.08); aspect-ratio: 16/9; }
-.cam-feed img { width: 100%; height: 100%; object-fit: cover; opacity: 0.75; }
-.cam-label { position: absolute; top: 6px; left: 6px; padding: 3px 8px; border-radius: 4px; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); font-family: 'Space Grotesk', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.08em; }
-.live-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #ef4444; box-shadow: 0 0 12px #ef4444; animation: pulse-soft 1.5s ease-in-out infinite; }
-
 .feature-item { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
 .feature-item:last-child { border-bottom: none; }
 .feature-icon { flex-shrink: 0; width: 38px; height: 38px; border-radius: 10px; background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(34,211,238,0.1)); border: 1px solid rgba(139,92,246,0.2); display: flex; align-items: center; justify-content: center; color: var(--purple-light); font-size: 15px; }
@@ -255,17 +235,8 @@ body {
 .img-frame { position: relative; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); background: var(--bg-2); }
 .img-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-.gallery-card {
-  position: relative; border-radius: 16px; overflow: hidden;
-  cursor: none; transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
-  border: 1px solid rgba(255,255,255,0.06); height: 100%;
-}
-.gallery-card:hover { transform: translateY(-6px); border-color: rgba(139,92,246,0.3); }
-.gallery-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s cubic-bezier(0.16,1,0.3,1); display: block; }
-.gallery-card:hover img { transform: scale(1.08); }
-
 input, textarea, form { cursor: text !important; }
-@media (max-width: 900px) { .gallery-card { cursor: pointer; } input, textarea, form { cursor: auto !important; } }
+@media (max-width: 900px) { input, textarea, form { cursor: auto !important; } }
 
 .coming-soon-badge {
   display: inline-flex; align-items: center; gap: 8px;
@@ -365,7 +336,6 @@ input, textarea, form { cursor: text !important; }
       <span class="font-display font-bold text-lg tracking-tight">Afrisoft</span>
     </a>
     <div class="hidden lg:flex items-center gap-8">
-      <a href="#products" class="nav-link" data-cursor="hover">Products</a>
       <a href="#livcast-go" class="nav-link" data-cursor="hover">Livcast Go</a>
       <a href="#livcast" class="nav-link" data-cursor="hover">LIVCAST</a>
       <a href="#kuphanda" class="nav-link" data-cursor="hover">Kuphanda AI</a>
@@ -389,7 +359,6 @@ input, textarea, form { cursor: text !important; }
   <button id="menu-close" class="absolute top-6 right-6 w-10 h-10 rounded-lg glass flex items-center justify-center">
     <i class="fa-solid fa-xmark text-xl"></i>
   </button>
-  <a href="#products" class="mobile-link">Products</a>
   <a href="#livcast-go" class="mobile-link">Livcast Go</a>
   <a href="#livcast" class="mobile-link">LIVCAST</a>
   <a href="#kuphanda" class="mobile-link">Kuphanda AI</a>
@@ -423,7 +392,7 @@ input, textarea, form { cursor: text !important; }
         AI, Broadcasting, Network Optimization, Games, and Future Technologies — engineered by Afrisoft to power the nation's digital ascent.
       </p>
       <div class="reveal reveal-d3 flex flex-col sm:flex-row gap-3 sm:gap-4">
-        <a href="#products" class="btn-primary magnetic" data-cursor="hover">
+        <a href="#livcast-go" class="btn-primary magnetic" data-cursor="hover">
           <span>Explore Products</span>
           <i class="fa-solid fa-arrow-down text-xs"></i>
         </a>
@@ -483,105 +452,7 @@ input, textarea, form { cursor: text !important; }
   </div>
 </section>
 
-<!-- PRODUCT SHOWCASE -->
-<section id="products" class="section-pad relative overflow-hidden">
-  <div class="orb" style="width:500px;height:500px;background:rgba(139,92,246,0.15);top:20%;left:-150px;"></div>
-  <div class="max-w-7xl mx-auto px-6 lg:px-12">
-    <div class="text-center mb-12 md:mb-20">
-      <div class="reveal tag-chip mb-6"><i class="fa-solid fa-cube text-[10px]"></i>Flagship Products</div>
-      <h2 class="reveal reveal-d1 font-display font-bold text-[clamp(32px,7vw,72px)] leading-[1.05] tracking-tight mb-6">
-        Four products.<br><span class="gradient-text">One vision.</span>
-      </h2>
-      <p class="reveal reveal-d2 text-[var(--muted)] text-base md:text-lg max-w-2xl mx-auto px-4">
-        Engineered in Malawi for the world. Each product sets a new standard in its domain.
-      </p>
-    </div>
-
-    <div class="grid lg:grid-cols-4 gap-6 md:gap-8">
-      <!-- Livcast Go Card (1st) -->
-      <a href="#livcast-go" class="reveal reveal-d2 product-card p-6 md:p-8 block min-h-[400px] flex flex-col justify-between" data-tilt data-cursor="hover">
-        <div>
-          <div class="flex items-center justify-between mb-6">
-            <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,rgba(139,92,246,0.2),rgba(34,211,238,0.1));border:1px solid rgba(139,92,246,0.3);">
-              <i class="fa-solid fa-mobile-screen text-[var(--purple-light)] text-sm md:text-base"></i>
-            </div>
-            <div class="tag-chip !text-[10px]">Android</div>
-          </div>
-          <div class="font-display font-bold text-lg md:text-xl mb-2">Livcast Go</div>
-          <p class="text-[var(--muted)] text-xs md:text-sm leading-relaxed mb-4">
-            Turn your phone into a director suite. Connect cameramen, switch feeds, and stream to YouTube and Facebook.
-          </p>
-        </div>
-        <div class="flex items-center justify-between pt-4 border-t border-white/5">
-          <span class="text-[10px] text-[var(--cyan)]">Mobile Streaming</span>
-          <i class="fa-solid fa-arrow-right text-xs text-white"></i>
-        </div>
-      </a>
-
-      <!-- LIVCAST Card (2nd) -->
-      <a href="#livcast" class="reveal reveal-d3 product-card p-6 md:p-8 block min-h-[400px] flex flex-col justify-between" data-tilt data-cursor="hover">
-        <div>
-          <div class="flex items-center justify-between mb-6">
-            <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,rgba(34,211,238,0.2),rgba(59,130,246,0.1));border:1px solid rgba(34,211,238,0.3);">
-              <i class="fa-solid fa-tower-broadcast text-[var(--cyan)] text-sm md:text-base"></i>
-            </div>
-            <div class="tag-chip !text-[10px]" style="background:rgba(34,211,238,0.08);border-color:rgba(34,211,238,0.25);color:var(--cyan-light);">Windows</div>
-          </div>
-          <div class="font-display font-bold text-lg md:text-xl mb-2">LIVCAST</div>
-          <p class="text-[var(--muted)] text-xs md:text-sm leading-relaxed mb-4">
-            Professional church and event production software. Multi-camera workflows and broadcast controls.
-          </p>
-        </div>
-        <div class="flex items-center justify-between pt-4 border-t border-white/5">
-          <span class="text-[10px] text-[var(--cyan)]">Desktop Studio</span>
-          <i class="fa-solid fa-arrow-right text-xs text-white"></i>
-        </div>
-      </a>
-
-      <!-- Kuphanda Card (3rd) -->
-      <a href="#kuphanda" class="reveal reveal-d4 product-card p-6 md:p-8 block min-h-[400px] flex flex-col justify-between" data-tilt data-cursor="hover">
-        <div>
-          <div class="flex items-center justify-between mb-6">
-            <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,rgba(139,92,246,0.2),rgba(34,211,238,0.1));border:1px solid rgba(139,92,246,0.3);">
-              <i class="fa-solid fa-brain text-[var(--purple-light)] text-sm md:text-base"></i>
-            </div>
-            <div class="tag-chip !text-[10px]">AI</div>
-          </div>
-          <div class="font-display font-bold text-lg md:text-xl mb-2">Kuphanda AI</div>
-          <p class="text-[var(--muted)] text-xs md:text-sm leading-relaxed mb-4">
-            Offline AI-powered study companion and PDF reader. Intelligent assistance without internet.
-          </p>
-        </div>
-        <div class="flex items-center justify-between pt-4 border-t border-white/5">
-          <span class="text-[10px] text-[var(--cyan)]">Education</span>
-          <i class="fa-solid fa-arrow-right text-xs text-white"></i>
-        </div>
-      </a>
-
-      <!-- Gallic Net-Booster Card (4th) -->
-      <a href="#gallic" class="reveal reveal-d5 product-card p-6 md:p-8 block min-h-[400px] flex flex-col justify-between" data-tilt data-cursor="hover">
-        <div>
-          <div class="flex items-center justify-between mb-6">
-            <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,rgba(34,211,238,0.2),rgba(59,130,246,0.1));border:1px solid rgba(34,211,238,0.3);">
-              <i class="fa-solid fa-bolt text-[var(--cyan)] text-sm md:text-base"></i>
-            </div>
-            <div class="tag-chip !text-[10px]" style="background:rgba(34,211,238,0.08);border-color:rgba(34,211,238,0.25);color:var(--cyan-light);">Android</div>
-          </div>
-          <div class="font-display font-bold text-lg md:text-xl mb-2">Gallic Net-Booster</div>
-          <p class="text-[var(--muted)] text-xs md:text-sm leading-relaxed mb-4">
-            Don't let your ISP throttle your speed. Unlock 1080p on unstable WiFi with one click.
-          </p>
-        </div>
-        <div class="flex items-center justify-between pt-4 border-t border-white/5">
-          <span class="text-[10px] text-[var(--cyan)]">Network Tool</span>
-          <i class="fa-solid fa-arrow-right text-xs text-white"></i>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- LIVCAST GO SECTION (Product 01) -->
+<!-- LIVCAST GO SECTION -->
 <section id="livcast-go" class="section-pad relative overflow-hidden">
   <div class="orb" style="width:700px;height:700px;background:rgba(139,92,246,0.18);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
 
@@ -591,7 +462,7 @@ input, textarea, form { cursor: text !important; }
       <div>
         <div class="reveal tag-chip mb-6" style="background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.3);color:var(--purple-light);">
           <span class="w-1.5 h-1.5 rounded-full bg-[var(--purple-light)] pulse-soft"></span>
-          Product 01 / Livcast Go
+          Livcast Go
         </div>
         <h2 class="reveal reveal-d1 font-display font-bold text-[clamp(32px,6.5vw,64px)] leading-[1.05] tracking-tight mb-6">
           A studio in<br><span class="gradient-text">your pocket.</span>
@@ -679,7 +550,7 @@ input, textarea, form { cursor: text !important; }
 
 <div class="divider-line"></div>
 
-<!-- LIVCAST SECTION (Product 02) -->
+<!-- LIVCAST SECTION -->
 <section id="livcast" class="section-pad relative overflow-hidden">
   <div class="orb" style="width:600px;height:600px;background:rgba(34,211,238,0.15);top:20%;left:-200px;"></div>
   <div class="orb" style="width:400px;height:400px;background:rgba(59,130,246,0.15);bottom:10%;right:-100px;"></div>
@@ -689,7 +560,7 @@ input, textarea, form { cursor: text !important; }
       <div>
         <div class="reveal tag-chip mb-6" style="background:rgba(34,211,238,0.08);border-color:rgba(34,211,238,0.25);color:var(--cyan-light);">
           <span class="w-1.5 h-1.5 rounded-full bg-[var(--cyan)] pulse-soft"></span>
-          Product 02 / LIVCAST
+          LIVCAST
         </div>
         <h2 class="reveal reveal-d1 font-display font-bold text-[clamp(32px,6.5vw,64px)] leading-[1.05] tracking-tight mb-6">
           Broadcast-grade<br><span class="gradient-text">production suite.</span>
@@ -772,7 +643,7 @@ input, textarea, form { cursor: text !important; }
 
 <div class="divider-line"></div>
 
-<!-- KUPHANDA AI SECTION (Product 03) -->
+<!-- KUPHANDA AI SECTION -->
 <section id="kuphanda" class="section-pad relative overflow-hidden">
   <div class="orb" style="width:600px;height:600px;background:rgba(139,92,246,0.2);top:30%;right:-200px;"></div>
   <div class="orb" style="width:400px;height:400px;background:rgba(34,211,238,0.1);bottom:10%;left:-100px;"></div>
@@ -818,7 +689,7 @@ input, textarea, form { cursor: text !important; }
       <div class="order-1 lg:order-2">
         <div class="reveal tag-chip mb-6">
           <span class="w-1.5 h-1.5 rounded-full bg-[var(--purple)] pulse-soft"></span>
-          Product 03 / Kuphanda AI
+          Kuphanda AI
         </div>
         <h2 class="reveal reveal-d1 font-display font-bold text-[clamp(32px,6.5vw,64px)] leading-[1.05] tracking-tight mb-6">
           Intelligence<br><span class="gradient-text">without internet.</span>
@@ -869,7 +740,7 @@ input, textarea, form { cursor: text !important; }
 
 <div class="divider-line"></div>
 
-<!-- GALLIC NET-BOOSTER SECTION (Product 04) -->
+<!-- GALLIC NET-BOOSTER SECTION -->
 <section id="gallic" class="section-pad relative overflow-hidden">
   <div class="orb" style="width:600px;height:600px;background:rgba(34,211,238,0.15);top:20%;left:-200px;"></div>
   <div class="orb" style="width:400px;height:400px;background:rgba(59,130,246,0.15);bottom:10%;right:-100px;"></div>
@@ -879,7 +750,7 @@ input, textarea, form { cursor: text !important; }
       <div>
         <div class="reveal tag-chip mb-6" style="background:rgba(34,211,238,0.08);border-color:rgba(34,211,238,0.25);color:var(--cyan-light);">
           <span class="w-1.5 h-1.5 rounded-full bg-[var(--cyan)] pulse-soft"></span>
-          Product 04 / Gallic Net-Booster
+          Gallic Net-Booster
         </div>
         <h2 class="reveal reveal-d1 font-display font-bold text-[clamp(32px,6.5vw,64px)] leading-[1.05] tracking-tight mb-6">
           Buffering is a choice.<br><span class="gradient-text">Choose NetBooster.</span>
@@ -1479,20 +1350,6 @@ document.querySelectorAll('[data-cursor="hover"]').forEach(el => { el.addEventLi
 const revealObserver = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } }); }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// ==================== PRODUCT CARD TILT ====================
-document.querySelectorAll('[data-tilt]').forEach(card => {
-  card.addEventListener('mousemove', (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left, y = e.clientY - rect.top;
-    const rx = ((y - rect.height/2) / (rect.height/2)) * -6;
-    const ry = ((x - rect.width/2) / (rect.width/2)) * 6;
-    card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(0)`;
-    card.style.setProperty('--mx', `${(x/rect.width)*100}%`);
-    card.style.setProperty('--my', `${(y/rect.height)*100}%`);
-  });
-  card.addEventListener('mouseleave', () => { card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)'; });
-});
-
 // ==================== MAGNETIC BUTTONS ====================
 document.querySelectorAll('.magnetic').forEach(el => {
   el.addEventListener('mousemove', (e) => {
@@ -1760,11 +1617,6 @@ window.addEventListener('scroll', () => {
     heroContent.style.transform = `translateY(${scrollY * 0.3}px)`;
     heroContent.style.opacity = Math.max(0, 1 - scrollY / (window.innerHeight * 0.7));
   }
-});
-
-// ==================== GSAP SCROLL ANIMATIONS ====================
-gsap.utils.toArray('.product-card').forEach((card) => {
-  gsap.from(card, { scrollTrigger: { trigger: card, start: 'top 85%', end: 'top 50%', scrub: 1 }, y: 80, opacity: 0 });
 });
 </script>
 
