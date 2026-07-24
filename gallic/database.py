@@ -9,6 +9,7 @@ load_dotenv()
 # Check for credentials
 cred = None
 use_firebase = False
+db = None  # Safe default initialization so importing 'db' from main.py never crashes!
 
 # 1. Look for local service-account.json file
 cred_path = os.path.join(os.path.dirname(__file__), "service-account.json")
