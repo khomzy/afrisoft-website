@@ -84,7 +84,6 @@ Current System Date and Time: {current_time}
 """
 
 def generate_content_with_fallback(client, contents, config):
-    # Try models that have available quota on the free tier
     models_to_try = [
         "gemini-3.5-flash-lite",
         "gemini-3.6-flash",
@@ -93,7 +92,7 @@ def generate_content_with_fallback(client, contents, config):
         "gemini-2.0-flash-lite",
         "gemini-2.0-flash"
     ]
-    last_error = None
+    errors = []
     for model_name in models_to_try:
         try:
             print(f"Attempting API call with {model_name}...")
@@ -105,9 +104,10 @@ def generate_content_with_fallback(client, contents, config):
             print(f"Success with {model_name}!")
             return response
         except Exception as e:
-            print(f"Error with {model_name}: {e}")
-            last_error = e
-    raise last_error
+            err_msg = f"[{model_name}: {str(e)[:120]}]"
+            print(f"Error with {err_msg}")
+            errors.append(err_msg)
+    raise Exception(" | ".join(errors))
 
 @app.post("/chat")
 async def chat(request: ChatRequest):
@@ -276,8 +276,6 @@ async def sync_gmail(req: GmailSyncRequest):
 
 @app.get("/api/whatsapp-webhook")
 async def verify_whatsapp_webhook(hub_mode: Optional[str] = None, hub_challenge: Optional[str] = None, hub_verify_token: Optional[str] = None):
-    # Standard Meta Developer Verification Protocol
-    # Matches whatever verification token Elias specifies inside settings
     if hub_challenge:
         return int(hub_challenge) if hub_challenge.isdigit() else hub_challenge
     return "Verification token configured successfully"
@@ -286,7 +284,6 @@ async def verify_whatsapp_webhook(hub_mode: Optional[str] = None, hub_challenge:
 async def whatsapp_webhook(data: dict):
     global pending_notifications
     
-    # 1. Parse Meta WhatsApp Business JSON payloads
     if data.get("object") == "whatsapp_business_account" and data.get("entry"):
         try:
             for entry in data["entry"]:
@@ -316,7 +313,6 @@ async def whatsapp_webhook(data: dict):
                                 "type": "whatsapp"
                             })
                             
-                            # Broadcast to all active companion nodes & write to Firestore
                             title = f"Draft WhatsApp reply to Girlfriend {sender_name}"
                             desc = "Young Gallic synchronized incoming alert."
                             body = f"Hi {sender_name}, received your message. I'm currently in a financial review/MUBAS session and will respond fully as soon as I am free. — Elias"
@@ -337,7 +333,6 @@ async def whatsapp_webhook(data: dict):
         except Exception as e:
             print(f"Error parsing Meta webhook payload: {e}")
             
-    # 2. Standalone webhook support and raw simulation console backward compatibility
     sender = data.get("sender", "Unknown")
     message = data.get("message", "")
     pending_notifications.append({
@@ -347,7 +342,6 @@ async def whatsapp_webhook(data: dict):
         "type": "whatsapp"
     })
     
-    # Broadcast to all active companion nodes & write to Firestore
     title = f"Draft WhatsApp reply to Girlfriend {sender}"
     desc = "Young Gallic synchronized incoming alert."
     body = f"Hi {sender}, received your message. I'm currently in a financial review/MUBAS session and will respond fully as soon as I am free. — Elias"
@@ -397,7 +391,6 @@ async def websocket_companion(websocket: WebSocket, token: str = None):
                 print(f"Remote command received from Companion App: {prompt}")
                 save_message("user", prompt)
                 
-                # Fetch chat history to give the model context
                 formatted_history = []
                 history = get_chat_history()
                 for row in history:
@@ -424,7 +417,6 @@ async def websocket_companion(websocket: WebSocket, token: str = None):
                 
                 save_message("bot", bot_reply)
                 
-                # Broadcast response back to the paired companion client
                 await websocket.send_text(json.dumps({
                     'type': 'chat_response',
                     'text': bot_reply
@@ -463,10 +455,8 @@ def start_commands_listener():
                     print(f"Firestore Remote command received: {prompt}")
                     doc_ref.update({"status": "processing"})
 
-                    # Save user message to history
                     save_message("user", prompt)
 
-                    # Fetch chat history to give the model context
                     formatted_history = []
                     history = get_chat_history()
                     for row in history:
@@ -491,10 +481,8 @@ def start_commands_listener():
                     except Exception as e:
                         bot_reply = f"Error processing remote command: {str(e)}"
 
-                    # Save model response
                     save_message("bot", bot_reply)
 
-                    # Update Firestore command document
                     doc_ref.update({
                         "response": bot_reply,
                         "status": "completed",
@@ -509,13 +497,12 @@ def start_commands_listener():
 async def startup_event():
     start_commands_listener()
 
-# Mount the static files from the React build
 frontend_path = os.path.join(os.path.dirname(__file__), "frontend", "dist")
 if os.path.exists(frontend_path):
     app.mount("/gallic", StaticFiles(directory=frontend_path, html=True), name="static_gallic")
     app.mount("/", StaticFiles(directory=frontend_path, html=True), name="static")
 else:
-    print(f"Warning: Frontend build directory not found at {frontend_path}. Make sure to run 'npm run build' inside the frontend directory.")
+    print(f"Warning: Frontend build directory not found at {frontend_path}.")
 
 if __name__ == "__main__":
     import uvicorn
