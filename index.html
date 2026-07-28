@@ -115,6 +115,15 @@ body {
 }
 .btn-secondary:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.32); transform: translateY(-2px); }
 
+.btn-disabled {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 14px 24px; border-radius: 100px;
+  font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 14px;
+  color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.05);
+  border: 1px dashed rgba(255,255,255,0.2);
+  cursor: not-allowed; text-decoration: none; text-align: center;
+}
+
 .icon-btn {
   display: flex; align-items: center; justify-content: center;
   width: 48px; height: 48px; border-radius: 50%;
@@ -223,6 +232,23 @@ body {
 }
 .stat-pill.liked { background: rgba(239,68,68,0.1); border-color: rgba(239,68,68,0.3); color: #f87171; }
 
+/* Lightbox */
+.lightbox {
+  position: fixed; inset: 0; z-index: 999999; background: rgba(0,0,0,0.95);
+  display: none; align-items: center; justify-content: center; padding: 40px;
+  cursor: pointer;
+}
+.lightbox.open { display: flex; }
+.lightbox img {
+  max-width: 100%; max-height: 100%; border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+}
+.lightbox-close {
+  position: absolute; top: 20px; right: 20px; width: 50px; height: 50px;
+  border-radius: 50%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+  color: white; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+
 input, textarea, form, select { cursor: text; }
 .form-input {
   width: 100%; padding: 14px 16px; border-radius: 12px;
@@ -252,6 +278,12 @@ select.form-input option { background: #0a0a1a; color: white; }
 <body>
 
 <div class="noise-overlay"></div>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close"><i class="fa-solid fa-xmark"></i></button>
+    <img id="lightbox-img" src="" alt="Screenshot">
+</div>
 
 <!-- App Details Modal -->
 <div id="app-modal" class="app-modal">
@@ -370,7 +402,7 @@ select.form-input option { background: #0a0a1a; color: white; }
 
       <!-- Money OS Card -->
       <div class="app-card reveal reveal-d3" data-app="money-os">
-        <img src="https://z-cdn-media.chatglm.cn/files/4be75da5-eecf-455f-aed6-9a5a85a08ad3.png?auth_key=1885093449-f967681aad1f4302be8797498d645a98-0-9c43528262320a504ba7ba61b4c27b99" alt="Money OS" class="app-card-img">
+        <img src="https://z-cdn-media.chatglm.cn/files/16bf102e-f082-4c65-b182-c5553d6ae752.png?auth_key=1885224257-68a2d3bd3de04060ad292496658deb90-0-795406aeda7cd0b38de097b61fbd06fa" alt="Money OS" class="app-card-img">
         <div class="p-6 relative z-[2]">
           <div class="flex items-center gap-3 mb-4">
             <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-br from-green-500/20 to-emerald-500/10 border border-green-500/30">
@@ -552,6 +584,16 @@ select.form-input option { background: #0a0a1a; color: white; }
       </div>
     </div>
 
+    <!-- Social Icons -->
+    <div class="flex justify-center gap-4 mb-12">
+        <a href="https://chat.whatsapp.com/Ht6ePNMoHxuERBm84HO4Bh" target="_blank" rel="noopener" class="icon-btn" title="WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        <a href="https://www.youtube.com/channel/UCRL4EVR-IULfQy4XwHM9nAQ" target="_blank" rel="noopener" class="icon-btn" title="YouTube">
+            <i class="fa-brands fa-youtube"></i>
+        </a>
+    </div>
+
     <div class="flex flex-col md:flex-row items-center justify-between gap-4">
       <div class="text-xs text-[var(--dim)]">© 2026 Afrisoft. All rights reserved.</div>
       <div class="flex gap-6 text-xs text-[var(--dim)]">
@@ -716,6 +758,15 @@ function nextSlide() {
 updateSlideInfo(0);
 setInterval(nextSlide, 5000);
 
+// ==================== LIGHTBOX LOGIC ====================
+function openLightbox(imgSrc) {
+    document.getElementById('lightbox-img').src = imgSrc;
+    document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+}
+
 // ==================== APP STORE MODAL LOGIC ====================
 const appModal = document.getElementById('app-modal');
 const appModalBody = document.getElementById('app-modal-body');
@@ -728,10 +779,15 @@ const appData = {
         desc: 'Kuphanda AI is an offline AI-powered study companion and PDF reader. Built for students, it delivers intelligent explanations, question answering, and study assistance — entirely on-device, with no cloud dependency. Use Kuphanda AI in your group discussions.',
         features: ['AI-Powered Explanations', 'Offline Operation', 'PDF Reading & Analysis', 'Group Discussion Mode'],
         stats: { downloads: '12,450+', rating: '4.9/5', likes: 1200 },
-        images: ['https://z-cdn-media.chatglm.cn/files/44001f90-e2a7-4c08-8177-c1b7ba69f939.png?auth_key=1885099822-fd430184d4e0437eaaa471a995ca6346-0-7f8b2d23eb4aa102c98ca920e1c45759'],
-        platforms: ['android'],
-        downloadLink: 'https://drive.google.com/file/d/17neHZgQGsEH3Um7HKO6wnDAKH36CN97n/view?usp=drive_link',
-        downloadText: 'Download for Android'
+        images: [
+            'https://z-cdn-media.chatglm.cn/files/921fd6f8-e547-4953-8ffe-e9cd4d58a8f0.png?auth_key=1885224257-629fab9f0444454f8b1151ddda0f7549-0-aa78455b57d36f0e6989f7db94a8413e',
+            'https://z-cdn-media.chatglm.cn/files/78941e31-2b8b-4f0f-b8ec-6a8591b7992f.png?auth_key=1885224257-db49fc8565c2446b91a2a598146e49e5-0-0f43e821d2b53873b9518d6dc2b4051c'
+        ],
+        platforms: ['android', 'windows'],
+        downloadLink: 'https://drive.google.com/file/d/1dCjOnbsaraWHe0kBxmOvt67ibGqBhXhj/view?usp=drive_link',
+        downloadText: 'Download for Android',
+        windowsDownloadLink: null, // Coming soon
+        windowsDownloadText: 'Windows (Coming Soon)'
     },
     'livcast-go': {
         title: 'Livcast Go',
@@ -750,10 +806,10 @@ const appData = {
         desc: 'Money OS is a comprehensive microfinance app and PDF reader. It manages money between lenders by sending automated reminder alerts. The built-in AI handles document creation, analyzes data, and answers questions. It also features a robust rating system that evaluates clients based on repayment patterns, classifying them as safe or risky.',
         features: ['AI Document Creation', 'Repayment Alerts', 'Client Risk Rating', 'Offline PDF Reader'],
         stats: { downloads: '1,540+', rating: '4.9/5', likes: 320 },
-        images: ['https://z-cdn-media.chatglm.cn/files/4be75da5-eecf-455f-aed6-9a5a85a08ad3.png?auth_key=1885093449-f967681aad1f4302be8797498d645a98-0-9c43528262320a504ba7ba61b4c27b99'],
+        images: ['https://z-cdn-media.chatglm.cn/files/16bf102e-f082-4c65-b182-c5553d6ae752.png?auth_key=1885224257-68a2d3bd3de04060ad292496658deb90-0-795406aeda7cd0b38de097b61fbd06fa'],
         platforms: ['android', 'windows'],
-        downloadLink: '#',
-        downloadText: 'Download for Android & Windows',
+        downloadLink: 'https://drive.google.com/file/d/1CtLMNvQE_EUSh8IQbvF3_l763WlRDPuD/view?usp=drive_link',
+        downloadText: 'Download Now',
         testimonial: {
             text: "We are incredibly happy with Money OS from the day we began using it. It has helped us a lot.",
             author: "Ren Mal Capital Limited"
@@ -766,9 +822,9 @@ const appData = {
         features: ['BBR Congestion Control', 'RAM Video Loading', 'Smart VPN + Optimization', 'Stable Internet Calls'],
         stats: { downloads: '15,600+', rating: '4.9/5', likes: 2100 },
         images: ['https://z-cdn-media.chatglm.cn/files/bf4cb1c7-0973-45ac-aba5-5b686c189f0c.png?auth_key=1885099396-077941c15c45489a82cd414448bdf7b6-0-daea4f8ce07630fb80388bce373d36d0'],
-        platforms: ['android'],
-        downloadLink: 'https://drive.google.com/file/d/1fETSXERQj-qU9Bv0kumC0Dg09zQcuVMg/view?usp=drive_link',
-        downloadText: 'Download for Android'
+        platforms: ['windows'],
+        downloadLink: 'https://drive.google.com/file/d/17ax6jqUbQ3jVxggYx4UfucSD_QUPM5WV/view?usp=drive_link',
+        downloadText: 'Download for Windows'
     },
     'sky-assault': {
         title: 'Sky Assault',
@@ -824,13 +880,41 @@ document.querySelectorAll('.app-card').forEach(card => {
             `;
         }
         
+        // Images HTML
+        let imagesHtml = '';
+        if (app.images && app.images.length > 0) {
+            imagesHtml = `
+                <div class="grid grid-cols-${app.images.length > 1 ? '2' : '1'} gap-4 mt-4">
+                    ${app.images.map(img => `<img src="${img}" alt="${app.title} Screenshot" class="w-full h-auto rounded-xl border border-white/10 cursor-pointer transition-transform hover:scale-105" onclick="openLightbox('${img}')">`).join('')}
+                </div>
+            `;
+        } else {
+            imagesHtml = `<div class="mt-4 p-4 rounded-xl glass flex items-center justify-center text-[var(--dim)] text-sm"><i class="fa-solid fa-images mr-2"></i> Screenshots coming soon</div>`;
+        }
+
+        // Buttons HTML
+        let buttonsHtml = '<div class="flex flex-col sm:flex-row gap-4 mt-auto">';
+        if (app.platforms.includes('android')) {
+            buttonsHtml += `<a href="${app.downloadLink}" target="_blank" rel="noopener" class="btn-primary flex-1"><i class="fa-brands fa-android text-xs"></i><span>${app.downloadText}</span></a>`;
+        }
+        if (app.platforms.includes('windows')) {
+            if (app.windowsDownloadLink) {
+                buttonsHtml += `<a href="${app.windowsDownloadLink}" target="_blank" rel="noopener" class="btn-primary flex-1" style="background: linear-gradient(135deg, var(--cyan), var(--blue));"><i class="fa-brands fa-windows text-xs"></i><span>${app.windowsDownloadText}</span></a>`;
+            } else {
+                buttonsHtml += `<div class="btn-disabled flex-1"><i class="fa-brands fa-windows text-xs"></i><span>Windows (Coming Soon)</span></div>`;
+            }
+        }
+        if (!app.platforms.includes('android') && app.platforms.includes('windows') && !app.windowsDownloadLink) {
+             // Override for Gallic which only has Windows link in downloadLink
+             buttonsHtml = `<a href="${app.downloadLink}" target="_blank" rel="noopener" class="btn-primary flex-1" style="background: linear-gradient(135deg, var(--cyan), var(--blue));"><i class="fa-brands fa-windows text-xs"></i><span>${app.downloadText}</span></a>`;
+        }
+        buttonsHtml += '</div>';
+
         appModalBody.innerHTML = `
             <div class="flex flex-col md:flex-row gap-8">
                 <div class="w-full md:w-1/2">
                     <img src="${app.images[0]}" alt="${app.title}" class="w-full h-auto rounded-2xl border border-white/10 shadow-lg">
-                    <div class="mt-4 p-4 rounded-xl glass flex items-center justify-center text-[var(--dim)] text-sm">
-                        <i class="fa-solid fa-images mr-2"></i> Screenshots coming soon
-                    </div>
+                    ${imagesHtml}
                 </div>
                 <div class="w-full md:w-1/2 flex flex-col">
                     <h2 class="font-display font-bold text-3xl md:text-4xl mb-2">${app.title}</h2>
@@ -860,10 +944,7 @@ document.querySelectorAll('.app-card').forEach(card => {
 
                     ${testimonialHtml}
 
-                    <a href="${app.downloadLink}" target="_blank" rel="noopener" class="btn-primary mt-auto">
-                        <i class="fa-solid fa-download text-xs"></i>
-                        <span>${app.downloadText}</span>
-                    </a>
+                    ${buttonsHtml}
                 </div>
             </div>
         `;
