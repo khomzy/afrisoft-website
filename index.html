@@ -176,13 +176,17 @@ body {
 .orb { position: absolute; border-radius: 50%; filter: blur(60px); pointer-events: none; z-index: 0; }
 .divider-line { height: 1px; width: 100%; background: linear-gradient(90deg, transparent, rgba(139,92,246,0.4), rgba(34,211,238,0.4), transparent); }
 
-/* App Store Grid */
+/* App Store Grid - New Meta/Developer Style */
 .app-card {
   position: relative; border-radius: 24px; overflow: hidden;
   background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
   border: 1px solid rgba(255,255,255,0.08);
   transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), border-color 0.5s, box-shadow 0.5s;
   will-change: transform; cursor: pointer;
+  display: flex; flex-direction: column;
+}
+@media (min-width: 768px) {
+  .app-card { flex-direction: row; }
 }
 .app-card:hover {
   transform: translateY(-8px); border-color: rgba(139,92,246,0.3);
@@ -194,11 +198,21 @@ body {
   opacity: 0; transition: opacity 0.4s; z-index: 1;
 }
 .app-card:hover::before { opacity: 1; }
+.app-card-img-container {
+  overflow: hidden; flex-shrink: 0;
+  width: 100%; height: 240px;
+}
+@media (min-width: 768px) {
+  .app-card-img-container { width: 50%; height: auto; }
+}
 .app-card-img {
-  width: 100%; aspect-ratio: 16/10; object-fit: cover;
+  width: 100%; height: 100%; object-fit: cover;
   transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
 }
 .app-card:hover .app-card-img { transform: scale(1.05); }
+.app-card-content {
+  padding: 32px; flex: 1; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 2;
+}
 
 /* App Modal */
 .app-modal {
@@ -338,7 +352,7 @@ select.form-input option { background: #0a0a1a; color: white; }
   <div class="relative z-10 pb-20 px-6 w-full text-center">
     <div class="flex flex-col items-center justify-center">
       <a href="#store" id="slide-btn" class="btn-primary mb-6">
-        <span>Learn more about Kuphanda AI</span>
+        <span>Learn More</span>
         <i class="fa-solid fa-arrow-right text-xs"></i>
       </a>
       <p id="slide-desc" class="text-white font-display transition-opacity duration-[1500ms] ease-in-out" style="opacity: 0; font-size: clamp(20px, 3.5vw, 36px); max-width: 800px; font-weight: 300; font-style: italic;">
@@ -364,106 +378,99 @@ select.form-input option { background: #0a0a1a; color: white; }
       </p>
     </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+    <div class="grid md:grid-cols-2 gap-6 md:gap-8">
       
       <!-- Kuphanda AI Card -->
       <div class="app-card reveal reveal-d1" data-app="kuphanda">
-        <img src="https://z-cdn-media.chatglm.cn/files/44001f90-e2a7-4c08-8177-c1b7ba69f939.png?auth_key=1885099822-fd430184d4e0437eaaa471a995ca6346-0-7f8b2d23eb4aa102c98ca920e1c45759" alt="Kuphanda AI" class="app-card-img">
-        <div class="p-6 relative z-[2]">
+        <div class="app-card-img-container">
+          <img src="https://z-cdn-media.chatglm.cn/files/44001f90-e2a7-4c08-8177-c1b7ba69f939.png?auth_key=1885099822-fd430184d4e0437eaaa471a995ca6346-0-7f8b2d23eb4aa102c98ca920e1c45759" alt="Kuphanda AI" class="app-card-img">
+        </div>
+        <div class="app-card-content">
           <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-br from-purple-500/20 to-cyan-500/10 border border-purple-500/30">
-              <i class="fa-solid fa-brain text-[var(--purple-light)]"></i>
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br from-purple-500/20 to-cyan-500/10 border border-purple-500/30">
+              <i class="fa-solid fa-brain text-[var(--purple-light)] text-lg"></i>
             </div>
-            <div class="font-display font-bold text-xl">Kuphanda AI</div>
+            <div class="font-display font-bold text-2xl">Kuphanda AI</div>
           </div>
-          <p class="text-[var(--muted)] text-sm mb-6">Offline AI-powered study companion and PDF reader. Intelligence without internet.</p>
-          <button class="btn-secondary w-full">
-            <span>View Details</span><i class="fa-solid fa-arrow-right text-xs"></i>
+          <p class="text-[var(--muted)] mb-8 flex-grow">Offline AI-powered study companion and PDF reader. Intelligence without internet.</p>
+          <button class="btn-secondary self-start">
+            <span>Learn More</span><i class="fa-solid fa-arrow-right text-xs"></i>
           </button>
         </div>
       </div>
 
       <!-- Livcast Go Card -->
       <div class="app-card reveal reveal-d2" data-app="livcast-go">
-        <img src="https://z-cdn-media.chatglm.cn/files/12fad830-e4c1-45ce-bcc4-f55b3d2d5ae4.png?auth_key=1885099396-784e2bc02dbf453387af5d76279800f4-0-27df7a875378b5ee91355514caa0f926" alt="Livcast Go" class="app-card-img">
-        <div class="p-6 relative z-[2]">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-br from-purple-500/20 to-cyan-500/10 border border-purple-500/30">
-              <i class="fa-solid fa-mobile-screen text-[var(--purple-light)]"></i>
-            </div>
-            <div class="font-display font-bold text-xl">Livcast Go</div>
-          </div>
-          <p class="text-[var(--muted)] text-sm mb-6">Turn your Android phone into a full broadcast director suite. Stream to YouTube and Facebook.</p>
-          <button class="btn-secondary w-full">
-            <span>View Details</span><i class="fa-solid fa-arrow-right text-xs"></i>
-          </button>
+        <div class="app-card-img-container">
+          <img src="https://z-cdn-media.chatglm.cn/files/12fad830-e4c1-45ce-bcc4-f55b3d2d5ae4.png?auth_key=1885099396-784e2bc02dbf453387af5d76279800f4-0-27df7a875378b5ee91355514caa0f926" alt="Livcast Go" class="app-card-img">
         </div>
-      </div>
-
-      <!-- Money OS Card -->
-      <div class="app-card reveal reveal-d3" data-app="money-os">
-        <img src="https://z-cdn-media.chatglm.cn/files/16bf102e-f082-4c65-b182-c5553d6ae752.png?auth_key=1885224257-68a2d3bd3de04060ad292496658deb90-0-795406aeda7cd0b38de097b61fbd06fa" alt="Money OS" class="app-card-img">
-        <div class="p-6 relative z-[2]">
+        <div class="app-card-content">
           <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-br from-green-500/20 to-emerald-500/10 border border-green-500/30">
-              <i class="fa-solid fa-money-bill-trend-up text-green-400"></i>
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br from-purple-500/20 to-cyan-500/10 border border-purple-500/30">
+              <i class="fa-solid fa-mobile-screen text-[var(--purple-light)] text-lg"></i>
             </div>
-            <div class="font-display font-bold text-xl">Money OS</div>
+            <div class="font-display font-bold text-2xl">Livcast Go</div>
           </div>
-          <p class="text-[var(--muted)] text-sm mb-6">Microfinance app with built-in AI. Manage lenders, send alerts, and rate client risk.</p>
-          <button class="btn-secondary w-full">
-            <span>View Details</span><i class="fa-solid fa-arrow-right text-xs"></i>
+          <p class="text-[var(--muted)] mb-8 flex-grow">Turn your Android phone into a full broadcast director suite. Stream to YouTube and Facebook.</p>
+          <button class="btn-secondary self-start">
+            <span>Learn More</span><i class="fa-solid fa-arrow-right text-xs"></i>
           </button>
         </div>
       </div>
 
       <!-- Gallic Net-Booster Card -->
       <div class="app-card reveal reveal-d1" data-app="gallic">
-        <img src="https://z-cdn-media.chatglm.cn/files/bf4cb1c7-0973-45ac-aba5-5b686c189f0c.png?auth_key=1885099396-077941c15c45489a82cd414448bdf7b6-0-daea4f8ce07630fb80388bce373d36d0" alt="Gallic Net-Booster" class="app-card-img">
-        <div class="p-6 relative z-[2]">
+        <div class="app-card-img-container">
+          <img src="https://z-cdn-media.chatglm.cn/files/bf4cb1c7-0973-45ac-aba5-5b686c189f0c.png?auth_key=1885099396-077941c15c45489a82cd414448bdf7b6-0-daea4f8ce07630fb80388bce373d36d0" alt="Gallic Net-Booster" class="app-card-img">
+        </div>
+        <div class="app-card-content">
           <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-br from-cyan-500/20 to-blue-500/10 border border-cyan-500/30">
-              <i class="fa-solid fa-bolt text-[var(--cyan)]"></i>
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br from-cyan-500/20 to-blue-500/10 border border-cyan-500/30">
+              <i class="fa-solid fa-bolt text-[var(--cyan)] text-lg"></i>
             </div>
-            <div class="font-display font-bold text-xl">Gallic Net-Booster</div>
+            <div class="font-display font-bold text-2xl">Gallic Net-Booster</div>
           </div>
-          <p class="text-[var(--muted)] text-sm mb-6">Buffering is a choice. Unlock Google's BBR Congestion Control for stable internet calls.</p>
-          <button class="btn-secondary w-full">
-            <span>View Details</span><i class="fa-solid fa-arrow-right text-xs"></i>
+          <p class="text-[var(--muted)] mb-8 flex-grow">A powerful desktop app for Windows. Play live football, download videos, and enjoy smooth playback even on unstable internet.</p>
+          <button class="btn-secondary self-start">
+            <span>Learn More</span><i class="fa-solid fa-arrow-right text-xs"></i>
           </button>
         </div>
       </div>
 
       <!-- Sky Assault Card -->
       <div class="app-card reveal reveal-d2" data-app="sky-assault">
-        <img src="https://z-cdn-media.chatglm.cn/files/47bac25b-ab08-455e-8d0b-275caaacc6dd.png?auth_key=1885093449-268cd1659a024394a76f91ee4ada1abd-0-b664d03472e82057fdfbf0a327e76b4e" alt="Sky Assault" class="app-card-img">
-        <div class="p-6 relative z-[2]">
+        <div class="app-card-img-container">
+          <img src="https://z-cdn-media.chatglm.cn/files/47bac25b-ab08-455e-8d0b-275caaacc6dd.png?auth_key=1885093449-268cd1659a024394a76f91ee4ada1abd-0-b664d03472e82057fdfbf0a327e76b4e" alt="Sky Assault" class="app-card-img">
+        </div>
+        <div class="app-card-content">
           <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-br from-red-500/20 to-orange-500/10 border border-red-500/30">
-              <i class="fa-solid fa-gamepad text-red-400"></i>
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br from-red-500/20 to-orange-500/10 border border-red-500/30">
+              <i class="fa-solid fa-gamepad text-red-400 text-lg"></i>
             </div>
-            <div class="font-display font-bold text-xl">Sky Assault</div>
+            <div class="font-display font-bold text-2xl">Sky Assault</div>
           </div>
-          <p class="text-[var(--muted)] text-sm mb-6">Fast-paced aerial combat game. Defend your territory from enemy attacks.</p>
-          <button class="btn-secondary w-full">
-            <span>View Details</span><i class="fa-solid fa-arrow-right text-xs"></i>
+          <p class="text-[var(--muted)] mb-8 flex-grow">Fast-paced aerial combat game. Defend your territory from enemy attacks.</p>
+          <button class="btn-secondary self-start">
+            <span>Learn More</span><i class="fa-solid fa-arrow-right text-xs"></i>
           </button>
         </div>
       </div>
 
       <!-- Livcast Tab Card -->
       <div class="app-card reveal reveal-d3" data-app="livcast-tab">
-        <img src="https://z-cdn-media.chatglm.cn/files/b12abaaf-1eda-463f-b2cc-5b4742d4ebc4.jpeg?auth_key=1883822205-c072db7d94b04a96bc1ace9e379f6fc8-0-cf539d324735f83ba4582137a1702e87" alt="Livcast Tab" class="app-card-img">
-        <div class="p-6 relative z-[2]">
+        <div class="app-card-img-container">
+          <img src="https://z-cdn-media.chatglm.cn/files/b12abaaf-1eda-463f-b2cc-5b4742d4ebc4.jpeg?auth_key=1883822205-c072db7d94b04a96bc1ace9e379f6fc8-0-cf539d324735f83ba4582137a1702e87" alt="Livcast Tab" class="app-card-img">
+        </div>
+        <div class="app-card-content">
           <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-br from-cyan-500/20 to-blue-500/10 border border-cyan-500/30">
-              <i class="fa-solid fa-tablet-screen-button text-[var(--cyan)]"></i>
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br from-cyan-500/20 to-blue-500/10 border border-cyan-500/30">
+              <i class="fa-solid fa-tablet-screen-button text-[var(--cyan)] text-lg"></i>
             </div>
-            <div class="font-display font-bold text-xl">Livcast Tab</div>
+            <div class="font-display font-bold text-2xl">Livcast Tab</div>
           </div>
-          <p class="text-[var(--muted)] text-sm mb-6">Re-imagined for tablets. Massive canvas for effortless streaming and multi-camera sync.</p>
-          <button class="btn-secondary w-full">
-            <span>View Details</span><i class="fa-solid fa-arrow-right text-xs"></i>
+          <p class="text-[var(--muted)] mb-8 flex-grow">Re-imagined for tablets. Massive canvas for effortless streaming and multi-camera sync.</p>
+          <button class="btn-secondary self-start">
+            <span>Learn More</span><i class="fa-solid fa-arrow-right text-xs"></i>
           </button>
         </div>
       </div>
@@ -724,15 +731,15 @@ const slides = document.querySelectorAll('.hero-slide');
 const slideDesc = document.getElementById('slide-desc');
 const slideBtn = document.getElementById('slide-btn');
 const slideData = [
-    { desc: 'Kuphanda is designed to empower students in their learning journey.', btnText: 'Learn more about Kuphanda AI', btnLink: '#store', styleClass: 'font-light italic' },
-    { desc: 'Stream your favorite football games live without internet interuptions.', btnText: 'Learn more about Net Booster', btnLink: '#store', styleClass: 'font-bold uppercase tracking-wider' },
-    { desc: 'Have stable live calls with anyone anywhere in the world.', btnText: 'Learn more about Livcast', btnLink: '#store', styleClass: 'font-medium tracking-wide' },
+    { desc: 'Kuphanda is designed to empower students in their learning journey.', btnText: 'Learn More', btnLink: '#store', styleClass: 'font-light italic' },
+    { desc: 'Stream your favorite football games live without internet interuptions.', btnText: 'Learn More', btnLink: '#store', styleClass: 'font-bold uppercase tracking-wider' },
+    { desc: 'Have stable live calls with anyone anywhere in the world.', btnText: 'Learn More', btnLink: '#store', styleClass: 'font-medium tracking-wide' },
     { desc: 'Desktop and mobile online game. Defend your territory from enemy attacks.', btnText: 'Play Now', btnLink: 'games/index.html', styleClass: 'font-mono' },
-    { desc: 'Everywhere you go, Kuphanda follows.', btnText: 'Learn more about Kuphanda AI', btnLink: '#store', styleClass: 'font-light tracking-widest' },
-    { desc: 'Have live video calls with your family, using Gallic Net Booster.', btnText: 'Learn more about Net Booster', btnLink: '#store', styleClass: 'font-semibold tracking-normal' },
-    { desc: 'Stream professionally to your facebook page.', btnText: 'Learn more about Livcast', btnLink: '#store', styleClass: 'font-extrabold tracking-tight' },
-    { desc: 'Have stable internet calls across all social media platforms.', btnText: 'Learn more about Net Booster', btnLink: '#store', styleClass: 'font-bold tracking-wide' },
-    { desc: 'Use Kuphanda AI in your group discussions.', btnText: 'Learn more about Kuphanda AI', btnLink: '#store', styleClass: 'font-semibold italic' }
+    { desc: 'Everywhere you go, Kuphanda follows.', btnText: 'Learn More', btnLink: '#store', styleClass: 'font-light tracking-widest' },
+    { desc: 'Have live video calls with your family, using Gallic Net Booster.', btnText: 'Learn More', btnLink: '#store', styleClass: 'font-semibold tracking-normal' },
+    { desc: 'Stream professionally to your facebook page.', btnText: 'Learn More', btnLink: '#store', styleClass: 'font-extrabold tracking-tight' },
+    { desc: 'Have stable internet calls across all social media platforms.', btnText: 'Learn More', btnLink: '#store', styleClass: 'font-bold tracking-wide' },
+    { desc: 'Use Kuphanda AI in your group discussions.', btnText: 'Learn More', btnLink: '#store', styleClass: 'font-semibold italic' }
 ];
 let currentSlide = 0;
 
@@ -786,7 +793,7 @@ const appData = {
         platforms: ['android', 'windows'],
         downloadLink: 'https://drive.google.com/file/d/1dCjOnbsaraWHe0kBxmOvt67ibGqBhXhj/view?usp=drive_link',
         downloadText: 'Download for Android',
-        windowsDownloadLink: null, // Coming soon
+        windowsDownloadLink: null,
         windowsDownloadText: 'Windows (Coming Soon)'
     },
     'livcast-go': {
@@ -800,30 +807,15 @@ const appData = {
         downloadLink: 'https://drive.google.com/file/d/1CDCvkDuiFLul0YMLGeRq_uCY5TL6TxYf/view?usp=drive_link',
         downloadText: 'Download for Android'
     },
-    'money-os': {
-        title: 'Money OS',
-        tagline: 'Microfinance, redefined by AI.',
-        desc: 'Money OS is a comprehensive microfinance app and PDF reader. It manages money between lenders by sending automated reminder alerts. The built-in AI handles document creation, analyzes data, and answers questions. It also features a robust rating system that evaluates clients based on repayment patterns, classifying them as safe or risky.',
-        features: ['AI Document Creation', 'Repayment Alerts', 'Client Risk Rating', 'Offline PDF Reader'],
-        stats: { downloads: '1,540+', rating: '4.9/5', likes: 320 },
-        images: ['https://z-cdn-media.chatglm.cn/files/16bf102e-f082-4c65-b182-c5553d6ae752.png?auth_key=1885224257-68a2d3bd3de04060ad292496658deb90-0-795406aeda7cd0b38de097b61fbd06fa'],
-        platforms: ['android', 'windows'],
-        downloadLink: 'https://drive.google.com/file/d/1CtLMNvQE_EUSh8IQbvF3_l763WlRDPuD/view?usp=drive_link',
-        downloadText: 'Download Now',
-        testimonial: {
-            text: "We are incredibly happy with Money OS from the day we began using it. It has helped us a lot.",
-            author: "Ren Mal Capital Limited"
-        }
-    },
     'gallic': {
         title: 'Gallic Net-Booster',
         tagline: 'Buffering is a choice.',
-        desc: "Your Linux Kernel is faster than you think. Unlock Google's BBR Congestion Control. It's not a 'cleaning' app—it's a network stack upgrade. Load any video into RAM and play it without network disturbances.",
-        features: ['BBR Congestion Control', 'RAM Video Loading', 'Smart VPN + Optimization', 'Stable Internet Calls'],
+        desc: 'A powerful desktop app for Windows OS. Play live football games by pasting the link. Download mp3 and 1080p videos from the internet using the video link. Enjoy smooth, hitch-free video playback even when your internet connection is unstable.',
+        features: ['Desktop App for Windows', 'Live Football Streaming', 'Download MP3 & 1080p Videos', 'Smooth Playback on Unstable Internet'],
         stats: { downloads: '15,600+', rating: '4.9/5', likes: 2100 },
         images: ['https://z-cdn-media.chatglm.cn/files/bf4cb1c7-0973-45ac-aba5-5b686c189f0c.png?auth_key=1885099396-077941c15c45489a82cd414448bdf7b6-0-daea4f8ce07630fb80388bce373d36d0'],
         platforms: ['windows'],
-        downloadLink: 'https://drive.google.com/file/d/17ax6jqUbQ3jVxggYx4UfucSD_QUPM5WV/view?usp=drive_link',
+        downloadLink: 'https://drive.google.com/drive/folders/17Hy-CgaU3cctdlFSjgP6CfH_Tx6SrnTq?usp=drive_link',
         downloadText: 'Download for Windows'
     },
     'sky-assault': {
@@ -900,13 +892,13 @@ document.querySelectorAll('.app-card').forEach(card => {
         if (app.platforms.includes('windows')) {
             if (app.windowsDownloadLink) {
                 buttonsHtml += `<a href="${app.windowsDownloadLink}" target="_blank" rel="noopener" class="btn-primary flex-1" style="background: linear-gradient(135deg, var(--cyan), var(--blue));"><i class="fa-brands fa-windows text-xs"></i><span>${app.windowsDownloadText}</span></a>`;
+            } else if (!app.platforms.includes('android')) {
+                 // This handles Gallic Net-Booster which only has Windows
+                 buttonsHtml += `<a href="${app.downloadLink}" target="_blank" rel="noopener" class="btn-primary flex-1" style="background: linear-gradient(135deg, var(--cyan), var(--blue));"><i class="fa-brands fa-windows text-xs"></i><span>${app.downloadText}</span></a>`;
             } else {
+                // This handles Kuphanda which has Android active and Windows coming soon
                 buttonsHtml += `<div class="btn-disabled flex-1"><i class="fa-brands fa-windows text-xs"></i><span>Windows (Coming Soon)</span></div>`;
             }
-        }
-        if (!app.platforms.includes('android') && app.platforms.includes('windows') && !app.windowsDownloadLink) {
-             // Override for Gallic which only has Windows link in downloadLink
-             buttonsHtml = `<a href="${app.downloadLink}" target="_blank" rel="noopener" class="btn-primary flex-1" style="background: linear-gradient(135deg, var(--cyan), var(--blue));"><i class="fa-brands fa-windows text-xs"></i><span>${app.downloadText}</span></a>`;
         }
         buttonsHtml += '</div>';
 
