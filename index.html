@@ -559,7 +559,8 @@
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify(payload)
         });
-        if (!response.ok) throw new Error('Form delivery failed');
+        const result = await response.json();
+        if (!response.ok || result.success === false || result.success === 'false') throw new Error('Form delivery failed');
         success.classList.add('show');
         form.reset();
       } catch (sendError) {
