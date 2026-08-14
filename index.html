@@ -157,20 +157,6 @@
     .feature h4 { margin: 11px 0 5px; font-size: 14px; }
     .feature p { margin: 0; color: #aeb4bf; font-size: 12px; line-height: 1.45; }
 
-    .more-products { padding: 112px 0; background: #f7f8fb; }
-    .section-intro { display: flex; align-items: end; justify-content: space-between; gap: 40px; margin-bottom: 44px; }
-    .section-intro h2 { max-width: 680px; margin: 0; font-size: clamp(42px, 5vw, 70px); line-height: 1.02; font-weight: 600; }
-    .section-intro p { max-width: 430px; margin: 0; color: var(--muted); }
-    .product-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
-    .mini-card { display: flex; flex-direction: column; overflow: hidden; min-height: 490px; border: 1px solid var(--line); border-radius: 24px; background: white; transition: transform .25s ease, box-shadow .25s ease; }
-    .mini-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
-    .mini-card img { height: 230px; object-fit: cover; }
-    .mini-card-body { display: flex; flex: 1; flex-direction: column; padding: 26px; }
-    .mini-icon { width: 42px; height: 42px; display: grid; place-items: center; margin-bottom: 22px; border-radius: 12px; color: white; background: var(--ink); font-size: 18px; }
-    .mini-card h3 { margin: 0 0 10px; font: 600 27px/1.1 "Space Grotesk", sans-serif; letter-spacing: -.03em; }
-    .mini-card p { margin: 0 0 24px; color: var(--muted); font-size: 14px; }
-    .text-link { display: inline-flex; align-items: center; gap: 9px; margin-top: auto; color: var(--blue-dark); font-size: 13px; font-weight: 800; }
-
     .about { padding: 112px 0; }
     .about-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 70px; align-items: center; }
     .about h2 { margin: 0 0 22px; font-size: clamp(44px, 5vw, 72px); line-height: 1.02; font-weight: 600; }
@@ -182,10 +168,12 @@
     .value h3 { margin: 25px 0 8px; font: 600 20px/1.15 "Space Grotesk", sans-serif; }
     .value p { margin: 0; color: var(--muted); font-size: 13px; }
 
-    .contact { padding: 28px 0 80px; }
+    .contact { padding: 28px 0 80px; scroll-margin-top: 96px; }
     .contact-card { display: grid; grid-template-columns: .86fr 1.14fr; gap: 52px; padding: clamp(30px, 5vw, 64px); color: white; border-radius: var(--radius); background: var(--blue); }
     .contact-copy h2 { margin: 0 0 18px; font-size: clamp(44px, 5vw, 74px); line-height: 1; font-weight: 600; }
     .contact-copy p { max-width: 450px; margin: 0; color: rgba(255,255,255,.78); }
+    .contact-copy .contact-direct { margin-top: 24px; color: white; font-size: 14px; font-weight: 700; }
+    .contact-direct a { display: inline-flex; align-items: center; gap: 8px; margin-top: 8px; color: white; text-decoration: underline; text-underline-offset: 4px; }
     .contact-form { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .field { display: grid; gap: 7px; }
     .field.full { grid-column: 1 / -1; }
@@ -195,8 +183,11 @@
     .field select option { color: var(--ink); background: white; }
     .field input:focus, .field select:focus, .field textarea:focus { border-color: white; background: rgba(255,255,255,.18); }
     .contact-form .secondary-btn { justify-self: start; margin-top: 4px; }
+    .contact-form .secondary-btn:disabled { opacity: .68; cursor: wait; transform: none; }
     .form-success { display: none; grid-column: 1 / -1; align-items: center; gap: 9px; padding: 13px 15px; border-radius: 12px; color: white; background: rgba(0,0,0,.16); font-size: 13px; font-weight: 700; }
     .form-success.show { display: flex; }
+    .form-error { display: none; grid-column: 1 / -1; align-items: center; gap: 9px; padding: 13px 15px; border-radius: 12px; color: white; background: rgba(112,0,26,.38); font-size: 13px; font-weight: 700; }
+    .form-error.show { display: flex; }
 
     footer { padding: 36px 0 46px; border-top: 1px solid var(--line); }
     .footer-row { display: flex; align-items: center; gap: 26px; }
@@ -223,7 +214,6 @@
       .product-image img { min-height: 460px; }
       .feature-row { grid-template-columns: 1fr 1fr; row-gap: 24px; }
       .feature:nth-child(3) { padding-left: 0; border-left: 0; }
-      .product-list { grid-template-columns: 1fr 1fr; }
       .about-grid, .contact-card { grid-template-columns: 1fr; }
     }
 
@@ -253,10 +243,7 @@
       .feature-row { grid-template-columns: 1fr; }
       .feature, .feature:nth-child(3) { min-height: auto; padding: 18px 0; border-left: 0; border-top: 1px solid rgba(255,255,255,.12); }
       .feature:first-child { border-top: 0; }
-      .more-products, .about { padding: 76px 0; }
-      .section-intro { align-items: flex-start; flex-direction: column; gap: 16px; }
-      .product-list { grid-template-columns: 1fr; }
-      .mini-card:last-child { grid-column: auto; }
+      .about { padding: 76px 0; }
       .values { grid-template-columns: 1fr; }
       .contact-form { grid-template-columns: 1fr; }
       .footer-row { align-items: flex-start; flex-direction: column; }
@@ -285,7 +272,6 @@
             <a href="games/index.html"><i class="fa-solid fa-gamepad"></i>Sky Assault</a>
           </div>
         </div>
-        <a class="nav-link" href="#ecosystem">Ecosystem</a>
         <div class="nav-dropdown">
           <button class="dropdown-toggle" type="button" aria-expanded="false">Company <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
           <div class="dropdown-menu">
@@ -304,7 +290,7 @@
   <nav class="mobile-panel" id="mobile-menu" aria-label="Mobile navigation">
     <a href="https://kuphanda.afrisoft.store/">Kuphanda AI <i class="fa-solid fa-arrow-right"></i></a>
     <a href="https://livcast.afrisoft.store/">LivCast Go <i class="fa-solid fa-arrow-right"></i></a>
-    <a href="#ecosystem">All products <i class="fa-solid fa-arrow-right"></i></a>
+    <a href="#kuphanda">All products <i class="fa-solid fa-arrow-right"></i></a>
     <a href="about.html">Company <i class="fa-solid fa-arrow-right"></i></a>
     <a class="primary-btn" href="#contact">Contact us</a>
   </nav>
@@ -381,25 +367,6 @@
       </div>
     </section>
 
-    <section class="more-products" id="ecosystem">
-      <div class="shell">
-        <div class="section-intro reveal">
-          <h2 class="display">One studio.<br>More ways to move.</h2>
-          <p>From offline AI to live production and original games, Afrisoft products share one purpose: make powerful technology more useful and more accessible.</p>
-        </div>
-        <div class="product-list">
-          <a class="mini-card reveal" href="games/index.html">
-            <img src="assets/sky-assault.png" alt="Sky Assault aerial combat game artwork">
-            <div class="mini-card-body"><span class="mini-icon"><i class="fa-solid fa-gamepad"></i></span><h3>Sky Assault</h3><p>Fast-paced aerial combat from Afrisoft's growing games studio.</p><span class="text-link">Play Sky Assault <i class="fa-solid fa-arrow-right"></i></span></div>
-          </a>
-          <a class="mini-card reveal" href="https://drive.google.com/file/d/1vkhf5zHgwZEHY8fmRCRTYDxJhNTO0Bre/view?usp=drive_link" target="_blank" rel="noopener">
-            <img src="assets/livcast-family.png" alt="LivCast Tab used for community broadcasting">
-            <div class="mini-card-body"><span class="mini-icon"><i class="fa-solid fa-tablet-screen-button"></i></span><h3>LivCast Tab</h3><p>A larger production canvas with mobile camera sync for effortless broadcasts.</p><span class="text-link">Experience LivCast Tab <i class="fa-solid fa-arrow-right"></i></span></div>
-          </a>
-        </div>
-      </div>
-    </section>
-
     <section class="about" id="about">
       <div class="shell about-grid">
         <div class="about-copy reveal">
@@ -419,14 +386,18 @@
 
     <section class="contact" id="contact">
       <div class="shell contact-card reveal">
-        <div class="contact-copy"><p class="eyebrow" style="color: white">Start a conversation</p><h2 class="display">Let's build the next frontier.</h2><p>Interested in membership, partnerships or investing in an Afrisoft project? Tell us where you want to begin.</p></div>
-        <form class="contact-form" id="contact-form">
+        <div class="contact-copy"><p class="eyebrow" style="color: white">Start a conversation</p><h2 class="display">Let's build the next frontier.</h2><p>Interested in membership, partnerships or investing in an Afrisoft project? Tell us where you want to begin.</p><p class="contact-direct">Prefer to email directly?<br><a href="mailto:ngowelak@gmail.com"><i class="fa-solid fa-envelope"></i>ngowelak@gmail.com</a></p></div>
+        <form class="contact-form" id="contact-form" action="https://formsubmit.co/ajax/ngowelak@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="New enquiry from Afrisoft.store">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
           <div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required placeholder="Your full name"></div>
           <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com"></div>
           <div class="field full"><label for="interest">I'm interested in</label><select id="interest" name="interest" required><option value="">Choose one</option><option>Becoming a member</option><option>Partnering with Afrisoft</option><option>Investing in a project</option><option>General enquiry</option></select></div>
           <div class="field full"><label for="message">Message</label><textarea id="message" name="message" rows="4" placeholder="Tell us a little about your idea"></textarea></div>
-          <button class="secondary-btn" type="submit">Send enquiry <i class="fa-solid fa-paper-plane"></i></button>
-          <div class="form-success" id="form-success" role="status"><i class="fa-solid fa-circle-check"></i>Thanks — your enquiry is ready for the Afrisoft team.</div>
+          <button class="secondary-btn" type="submit"><span class="submit-label">Send enquiry</span> <i class="fa-solid fa-paper-plane"></i></button>
+          <div class="form-success" id="form-success" role="status"><i class="fa-solid fa-circle-check"></i>Thanks — your message has been sent to Afrisoft.</div>
+          <div class="form-error" id="form-error" role="alert"><i class="fa-solid fa-circle-exclamation"></i>We could not send your message. Please email ngowelak@gmail.com directly.</div>
         </form>
       </div>
     </section>
@@ -435,7 +406,7 @@
   <footer>
     <div class="shell footer-row">
       <a class="footer-brand" href="#top">AFRISOFT</a>
-      <div class="footer-links"><span>© <span id="year"></span> Afrisoft</span><a href="about.html">Company</a><a href="#ecosystem">Products</a><a href="#contact">Contact</a><a href="terms.html">Terms</a></div>
+      <div class="footer-links"><span>© <span id="year"></span> Afrisoft</span><a href="about.html">Company</a><a href="#kuphanda">Products</a><a href="#contact">Contact</a><a href="terms.html">Terms</a></div>
       <div class="socials"><a href="https://chat.whatsapp.com/Ht6ePNMoHxuERBm84HO4Bh" target="_blank" rel="noopener" aria-label="Afrisoft on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a><a href="https://www.youtube.com/channel/UCRL4EVR-IULfQy4XwHM9nAQ" target="_blank" rel="noopener" aria-label="Afrisoft on YouTube"><i class="fa-brands fa-youtube"></i></a></div>
     </div>
   </footer>
@@ -570,10 +541,33 @@
     });
 
     const form = document.getElementById('contact-form');
-    form.addEventListener('submit', event => {
+    form.addEventListener('submit', async event => {
       event.preventDefault();
-      document.getElementById('form-success').classList.add('show');
-      form.reset();
+      const submitButton = form.querySelector('button[type="submit"]');
+      const submitLabel = submitButton.querySelector('.submit-label');
+      const success = document.getElementById('form-success');
+      const error = document.getElementById('form-error');
+      success.classList.remove('show');
+      error.classList.remove('show');
+      submitButton.disabled = true;
+      submitLabel.textContent = 'Sending…';
+
+      try {
+        const payload = Object.fromEntries(new FormData(form).entries());
+        const response = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (!response.ok) throw new Error('Form delivery failed');
+        success.classList.add('show');
+        form.reset();
+      } catch (sendError) {
+        error.classList.add('show');
+      } finally {
+        submitButton.disabled = false;
+        submitLabel.textContent = 'Send enquiry';
+      }
     });
 
     if (reduceMotion) {
