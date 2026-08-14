@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Meet the people building Afrisoft's learning, broadcasting and creative technology in Malawi.">
+  <meta name="theme-color" content="#ffffff">
+  <title>About Afrisoft — The Team Behind the Products</title>
+  <link rel="canonical" href="https://afrisoft.store/about.html">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root { --ink:#16171c; --muted:#626673; --line:#e8e9ef; --soft:#f6f7fb; --blue:#1268f3; --purple:#7128df; --shadow:0 18px 54px rgba(34,39,53,.1); --max:1180px; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background:white; font:400 16px/1.6 "Manrope",sans-serif; -webkit-font-smoothing:antialiased; }
+    img { display:block; width:100%; }
+    a { color:inherit; text-decoration:none; }
+    button { font:inherit; }
+    :focus-visible { outline:3px solid rgba(18,104,243,.34); outline-offset:4px; }
+    .shell { width:min(var(--max),calc(100% - 48px)); margin-inline:auto; }
+    .display { font-family:"Space Grotesk",sans-serif; letter-spacing:-.05em; }
+    .site-header { position:fixed; z-index:10; top:22px; left:50%; transform:translateX(-50%); width:min(var(--max),calc(100% - 48px)); border:1px solid rgba(26,30,40,.06); border-radius:999px; background:rgba(255,255,255,.92); box-shadow:0 12px 34px rgba(31,38,57,.1); backdrop-filter:blur(18px); }
+    .nav { min-height:70px; padding:0 18px 0 28px; display:flex; align-items:center; gap:24px; }
+    .brand { margin-right:auto; color:var(--blue); font:700 21px/1 "Space Grotesk",sans-serif; letter-spacing:.18em; }
+    .nav-links { display:flex; align-items:center; gap:4px; }
+    .nav-links a { padding:12px 15px; border-radius:999px; color:#353842; font-size:14px; font-weight:700; }
+    .nav-links a:hover { color:var(--blue); background:#f2f5fa; }
+    .button { display:inline-flex; min-height:46px; padding:0 20px; align-items:center; justify-content:center; gap:9px; border-radius:999px; color:white; background:var(--blue); font-size:14px; font-weight:800; box-shadow:0 10px 24px rgba(18,104,243,.22); }
+    .menu { display:none; width:44px; height:44px; border:0; border-radius:50%; background:#f1f3f7; cursor:pointer; }
+    .hero { padding:180px 0 110px; overflow:hidden; background:linear-gradient(145deg,#f9f9fc 0%,#fff 50%,#f3efff 100%); }
+    .hero-grid { display:grid; grid-template-columns:1.1fr .9fr; gap:80px; align-items:end; }
+    .eyebrow { margin:0 0 18px; color:var(--blue); font-size:12px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; }
+    h1 { max-width:760px; margin:0; font-size:clamp(58px,7vw,98px); line-height:.96; font-weight:600; }
+    .accent { color:var(--purple); }
+    .hero-copy > p:last-child { max-width:650px; margin:28px 0 0; color:var(--muted); font-size:19px; }
+    .hero-note { padding:30px; border:1px solid rgba(113,40,223,.13); border-radius:26px; background:rgba(255,255,255,.72); box-shadow:var(--shadow); }
+    .hero-note i { color:var(--purple); font-size:30px; }
+    .hero-note strong { display:block; margin:22px 0 8px; font:600 25px/1.15 "Space Grotesk",sans-serif; }
+    .hero-note p { margin:0; color:var(--muted); font-size:14px; }
+    .story { padding:104px 0; }
+    .story-grid { display:grid; grid-template-columns:.8fr 1.2fr; gap:80px; align-items:start; }
+    .story h2,.team-intro h2 { margin:0; font-size:clamp(44px,5vw,72px); line-height:1.02; font-weight:600; }
+    .story-copy { color:var(--muted); font-size:17px; }
+    .story-copy p:first-child { margin-top:0; }
+    .principles { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:42px; }
+    .principle { min-height:170px; padding:24px; border:1px solid var(--line); border-radius:20px; background:white; }
+    .principle i { color:var(--blue); font-size:22px; }
+    .principle strong { display:block; margin:24px 0 7px; font-family:"Space Grotesk",sans-serif; font-size:18px; }
+    .principle span { color:var(--muted); font-size:13px; }
+    .team { padding:104px 0 120px; background:var(--soft); }
+    .team-intro { max-width:760px; margin:0 auto 64px; text-align:center; }
+    .team-intro p:last-child { color:var(--muted); font-size:17px; }
+    .team-tier { position:relative; display:grid; gap:24px; margin-inline:auto; }
+    .tier-one { max-width:420px; grid-template-columns:1fr; }
+    .tier-two { max-width:780px; grid-template-columns:repeat(2,1fr); margin-top:42px; }
+    .tier-three { grid-template-columns:repeat(4,1fr); margin-top:42px; }
+    .tier-label { grid-column:1/-1; margin:0 0 -6px; color:#868b98; text-align:center; font-size:11px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; }
+    .person { padding:30px 22px; border:1px solid var(--line); border-radius:26px; text-align:center; background:white; box-shadow:0 10px 30px rgba(35,39,54,.06); }
+    .tier-one .person { padding:38px 30px; border-color:rgba(18,104,243,.18); box-shadow:var(--shadow); }
+    .portrait { width:150px; aspect-ratio:1; margin:0 auto 22px; overflow:hidden; border:6px solid #f1f3f8; border-radius:50%; background:#e9edf5; }
+    .tier-one .portrait { width:180px; border-color:#e7efff; }
+    .portrait img { height:100%; object-fit:cover; object-position:center 20%; }
+    .portrait.icon { display:grid; place-items:center; color:white; background:linear-gradient(145deg,#7128df,#1268f3); font-size:64px; }
+    .person h3 { margin:0; font:600 24px/1.15 "Space Grotesk",sans-serif; letter-spacing:-.035em; }
+    .role { margin:8px 0 13px; color:var(--blue); font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+    .person p:last-child { margin:0; color:var(--muted); font-size:13px; }
+    .tier-one .person p:last-child { font-size:14px; }
+    .cta { padding:88px 0; }
+    .cta-card { display:flex; align-items:center; justify-content:space-between; gap:32px; padding:52px; border-radius:28px; color:white; background:#1268f3; }
+    .cta-card h2 { max-width:680px; margin:0; font-size:clamp(38px,5vw,62px); line-height:1; font-weight:600; }
+    .cta-card .button { flex:0 0 auto; color:var(--ink); background:white; box-shadow:none; }
+    footer { padding:35px 0 44px; border-top:1px solid var(--line); }
+    .footer { display:flex; align-items:center; gap:24px; }
+    .footer span:first-child { color:var(--blue); font:700 17px/1 "Space Grotesk",sans-serif; letter-spacing:.15em; }
+    .footer-links { display:flex; flex-wrap:wrap; gap:18px; margin-left:auto; color:var(--muted); font-size:12px; font-weight:700; }
+    @media(max-width:900px){ .hero-grid,.story-grid{grid-template-columns:1fr}.hero-grid{gap:38px}.principles{grid-template-columns:1fr 1fr}.tier-three{grid-template-columns:1fr 1fr}.cta-card{align-items:flex-start;flex-direction:column} }
+    @media(max-width:700px){ .shell,.site-header{width:min(100% - 28px,var(--max))}.site-header{top:12px}.nav{min-height:64px;padding:0 10px 0 18px}.brand{font-size:17px}.nav-links,.nav>.button{display:none}.menu{display:grid;place-items:center}.nav-links.open{position:absolute;display:grid;top:76px;left:0;right:0;padding:12px;border:1px solid var(--line);border-radius:22px;background:white;box-shadow:var(--shadow)}.nav-links.open a{padding:14px}.hero{padding:135px 0 78px}.hero-grid{gap:28px}h1{font-size:clamp(49px,14vw,70px)}.hero-copy>p:last-child{font-size:16px}.story,.team{padding:76px 0}.principles,.tier-two,.tier-three{grid-template-columns:1fr}.tier-two,.tier-three{margin-top:28px}.person{padding:28px 20px}.cta{padding:64px 0}.cta-card{padding:34px 26px}.footer{align-items:flex-start;flex-direction:column}.footer-links{margin-left:0} }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="index.html">AFRISOFT</a>
+      <div class="nav-links" id="nav-links"><a href="index.html">Home</a><a href="index.html#kuphanda">Kuphanda</a><a href="index.html#livcast">LivCast</a><a href="#team">Team</a></div>
+      <a class="button" href="index.html#contact">Contact us</a>
+      <button class="menu" type="button" aria-label="Open menu" aria-controls="nav-links" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div class="hero-copy"><p class="eyebrow">About Afrisoft</p><h1 class="display">Built in Malawi.<br><span class="accent">Engineered for every frontier.</span></h1><p>We are a multidisciplinary technology company turning ambitious African ideas into practical products for learning, live production and creative expression.</p></div>
+        <aside class="hero-note"><i class="fa-solid fa-compass"></i><strong>One company. A growing product family.</strong><p>Kuphanda brings capable AI closer to every learner. LivCast puts multi-camera production within reach. Afrisoft is the team connecting those ideas to real people.</p></aside>
+      </div>
+    </section>
+
+    <section class="story">
+      <div class="shell">
+        <div class="story-grid">
+          <div><p class="eyebrow">Our direction</p><h2 class="display">Local understanding.<br>Global standards.</h2></div>
+          <div class="story-copy"><p>Afrisoft starts with the realities around us: connectivity can be limited, professional equipment can be expensive, and exceptional talent deserves tools that do not hold it back.</p><p>That perspective shapes products that work offline, turn everyday devices into production systems, and make complex technology feel useful from the first interaction.</p></div>
+        </div>
+        <div class="principles">
+          <div class="principle"><i class="fa-solid fa-earth-africa"></i><strong>Built from lived experience</strong><span>We begin close to the communities and problems our products serve.</span></div>
+          <div class="principle"><i class="fa-solid fa-microchip"></i><strong>Engineering with purpose</strong><span>Every capability must become a clear, dependable benefit for the user.</span></div>
+          <div class="principle"><i class="fa-solid fa-arrow-up-right-dots"></i><strong>Designed to travel</strong><span>Our roots are in Malawi; our standards and ambitions are worldwide.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="team" id="team">
+      <div class="shell">
+        <div class="team-intro"><p class="eyebrow">The people behind Afrisoft</p><h2 class="display">Different disciplines.<br>One direction.</h2><p>Our structure brings engineering, research, design and product leadership together around the same mission.</p></div>
+
+        <div class="team-tier tier-one">
+          <p class="tier-label">Founder & executive leadership</p>
+          <article class="person"><div class="portrait"><img src="assets/team-kondwani-ngowela.webp" alt="Kondwani Ngowela"></div><h3>Kondwani Ngowela</h3><p class="role">Founder & Chief Executive Officer</p><p>Leads Afrisoft's vision and product direction. His background is in Electrical & Electronics Engineering, with a college qualification in Biomedical Science.</p></article>
+        </div>
+
+        <div class="team-tier tier-two">
+          <p class="tier-label">Operations & research</p>
+          <article class="person"><div class="portrait"><img src="assets/team-amos-gumbwa.webp" alt="Amos Gumbwa"></div><h3>Amos Gumbwa</h3><p class="role">Chief Operations Officer</p><p>Turns company strategy into coordinated execution. He holds an Honours degree in Electrical & Electronics Engineering.</p></article>
+          <article class="person"><div class="portrait"><img src="assets/team-mervin-chiwaya.webp" alt="Mervin Chiwaya"></div><h3>Mervin Chiwaya</h3><p class="role">Research, Development & Benchmarking</p><p>Leads research and product benchmarking. He holds a Master's in Bioinformatics and a degree in Laboratory Science.</p></article>
+        </div>
+
+        <div class="team-tier tier-three">
+          <p class="tier-label">Technology, design & products</p>
+          <article class="person"><div class="portrait icon" aria-label="Professional woman profile icon"><i class="fa-solid fa-person-dress"></i></div><h3>Shantel Moyo</h3><p class="role">Senior Developer</p><p>Shapes reliable product experiences across the Afrisoft ecosystem.</p></article>
+          <article class="person"><div class="portrait"><img src="assets/team-shadreck-ngowela.webp" alt="Shadreck Ngowela"></div><h3>Shadreck Ngowela</h3><p class="role">Head of UI/UX</p><p>Heads user interface and experience design, with a perspective shaped at the Malawi University of Science and Technology.</p></article>
+          <article class="person"><div class="portrait"><img src="assets/team-mary-tamvekenji.webp" alt="Mary Tamvekenji"></div><h3>Mary Tamvekenji</h3><p class="role">Kuphanda Product Lead</p><p>Guides Kuphanda's growth around the needs of learners, educators and institutions.</p></article>
+          <article class="person"><div class="portrait"><img src="assets/team-vitumbiko-chaluthanda.webp" alt="Vitumbiko Chaluthanda"></div><h3>Vitumbiko Chaluthanda</h3><p class="role">LivCast Product Lead</p><p>Leads LivCast as it grows into an accessible production ecosystem for every kind of story.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta"><div class="shell"><div class="cta-card"><h2 class="display">Have a challenge worth building for?</h2><a class="button" href="index.html#contact">Start a conversation <i class="fa-solid fa-arrow-right"></i></a></div></div></section>
+  </main>
+
+  <footer><div class="shell footer"><span>AFRISOFT</span><div class="footer-links"><span>© <span id="year"></span> Afrisoft</span><a href="index.html">Home</a><a href="terms.html">Terms</a><a href="index.html#contact">Contact</a></div></div></footer>
+  <script>
+    const menu = document.querySelector('.menu');
+    const links = document.getElementById('nav-links');
+    menu.addEventListener('click', () => { const open = links.classList.toggle('open'); menu.setAttribute('aria-expanded', String(open)); menu.setAttribute('aria-label', open ? 'Close menu' : 'Open menu'); menu.innerHTML = open ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>'; });
+    links.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { links.classList.remove('open'); menu.setAttribute('aria-expanded', 'false'); }));
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

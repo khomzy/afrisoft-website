@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Afrisoft builds intelligent products for learning, broadcasting, connectivity and play.">
+  <meta name="description" content="Afrisoft builds intelligent products for learning, live broadcasting and play—created in Malawi for every frontier.">
   <meta name="theme-color" content="#ffffff">
   <title>Afrisoft — Technology Made for Every Frontier</title>
   <link rel="canonical" href="https://afrisoft.store/">
@@ -119,7 +119,7 @@
     .trust-row i { color: var(--green); }
 
     .products { padding: 28px 0 112px; }
-    .product-card { padding: clamp(28px, 5vw, 64px); border-radius: var(--radius); overflow: hidden; }
+    .product-card { padding: clamp(28px, 5vw, 64px); border-radius: var(--radius); overflow: hidden; scroll-margin-top: 110px; }
     .product-card + .product-card { margin-top: 24px; }
     .kuphanda-card { background: #f7f5f7; }
     .livcast-card { color: white; background: var(--night); }
@@ -144,7 +144,9 @@
     .livcast-card .product-copy p { color: #b9bec8; }
     .tab-feedback { min-height: 45px; }
     .product-image { height: clamp(460px, 38vw, 540px); overflow: hidden; border-radius: 26px; background: #e7e8eb; }
-    .product-image img { height: 100%; object-fit: cover; }
+    .product-image img { height: 100%; object-fit: cover; transition: opacity .28s ease, transform .55s ease; }
+    .product-image img.switching { opacity: 0; transform: scale(1.015); }
+    .product-image img.fit-contain { object-fit: contain; padding: 12px; background: #eef0f4; }
     .kuphanda-card .product-image img { object-position: 52% center; }
     .livcast-card .product-image { height: clamp(360px, 30vw, 430px); }
     .livcast-card .product-image img { object-position: center; }
@@ -173,6 +175,7 @@
     .about-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 70px; align-items: center; }
     .about h2 { margin: 0 0 22px; font-size: clamp(44px, 5vw, 72px); line-height: 1.02; font-weight: 600; }
     .about-copy > p { color: var(--muted); font-size: 18px; }
+    .about-copy .secondary-btn { margin-top: 12px; }
     .values { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
     .value { min-height: 178px; padding: 26px; border: 1px solid var(--line); border-radius: 20px; background: white; }
     .value i { color: var(--blue); font-size: 24px; }
@@ -239,8 +242,9 @@
       .products { padding-bottom: 72px; }
       .product-card { border-radius: 22px; }
       .product-head { align-items: flex-start; flex-direction: column; margin-bottom: 26px; }
-      .product-tabs { width: 100%; margin-left: 0; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 3px; }
-      .product-tab { white-space: nowrap; }
+      .product-tabs { width: 100%; margin-left: 0; flex-wrap: nowrap; gap: 0; padding-bottom: 3px; }
+      .product-tab { flex: 1 1 auto; padding: 10px 6px 13px; white-space: nowrap; font-size: 10.5px; }
+      .product-tab::after { left: 6px; right: 6px; }
       .product-copy h2 { font-size: 52px; }
       .product-copy h2 { white-space: normal; }
       .product-copy h3 { font-size: 34px; }
@@ -285,7 +289,8 @@
         <div class="nav-dropdown">
           <button class="dropdown-toggle" type="button" aria-expanded="false">Company <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
           <div class="dropdown-menu">
-            <a href="#about"><i class="fa-solid fa-building"></i>About Afrisoft</a>
+            <a href="about.html"><i class="fa-solid fa-building"></i>About Afrisoft</a>
+            <a href="about.html#team"><i class="fa-solid fa-people-group"></i>Leadership team</a>
             <a href="#contact"><i class="fa-solid fa-handshake"></i>Partner with us</a>
             <a href="https://www.youtube.com/channel/UCRL4EVR-IULfQy4XwHM9nAQ" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i>Watch our work</a>
           </div>
@@ -300,7 +305,7 @@
     <a href="https://kuphanda.afrisoft.store/">Kuphanda AI <i class="fa-solid fa-arrow-right"></i></a>
     <a href="https://livcast.afrisoft.store/">LivCast Go <i class="fa-solid fa-arrow-right"></i></a>
     <a href="#ecosystem">All products <i class="fa-solid fa-arrow-right"></i></a>
-    <a href="#about">Company <i class="fa-solid fa-arrow-right"></i></a>
+    <a href="about.html">Company <i class="fa-solid fa-arrow-right"></i></a>
     <a class="primary-btn" href="#contact">Contact us</a>
   </nav>
 
@@ -325,52 +330,52 @@
         <article class="product-card kuphanda-card reveal" id="kuphanda">
           <div class="product-head">
             <div class="product-mark"><i class="fa-solid fa-circle-nodes" aria-hidden="true"></i>Kuphanda AI</div>
-            <div class="product-tabs" aria-label="Kuphanda information">
-              <button class="product-tab active" type="button" data-message="Personalized tutoring, adaptive explanations and focused study help—ready whenever you are.">Overview</button>
-              <button class="product-tab" type="button" data-message="Turn difficult topics into clear steps, questions and study sessions that meet you at your level.">For Learners</button>
-              <button class="product-tab" type="button" data-message="Use guided explanations and group discussions to support teaching inside and outside the classroom.">For Educators</button>
-              <button class="product-tab" type="button" data-message="Give more learners dependable study support while keeping access simple and practical.">For Institutions</button>
+            <div class="product-tabs" aria-label="Kuphanda information" role="tablist">
+              <button class="product-tab active" role="tab" aria-selected="true" type="button" data-title="Offline intelligence. Ready wherever learning happens." data-message="Chat, study, listen and work with your documents using powerful AI that runs completely offline." data-image="assets/kuphanda-overview.webp" data-alt="Kuphanda AI overview with chat and Kuphanda Listen">Overview</button>
+              <button class="product-tab" role="tab" aria-selected="false" type="button" data-title="Math, shown step by step." data-message="Solve calculus, trigonometry, physics and more with clear working methods on one side and useful notes on the other." data-image="assets/kuphanda-math.webp" data-alt="Kuphanda Math Expert showing notes and a step-by-step solution" data-fit="contain">Math Expert</button>
+              <button class="product-tab" role="tab" aria-selected="false" type="button" data-title="Study in the way that works for you." data-message="Open PDFs, Word, Excel, PowerPoint and EPUB files, then ask for summaries, explanations, highlights or a practice exam." data-image="assets/kuphanda-students.webp" data-alt="Student learning with headphones, notes and a laptop">For Learners</button>
+              <button class="product-tab" role="tab" aria-selected="false" type="button" data-title="Dependable AI access for every classroom." data-message="Give schools and institutions private, practical learning support without depending on continuous internet access." data-image="assets/kuphanda-learning.png" data-alt="Students using Kuphanda together on a tablet">Institutions</button>
             </div>
           </div>
           <div class="product-grid">
             <div class="product-copy">
               <h2 class="display">Kuphanda AI</h2>
-              <h3 class="display">Intelligence that goes wherever learning takes you.</h3>
-              <p class="tab-feedback" aria-live="polite">Personalized tutoring, adaptive explanations and focused study help—ready whenever you are.</p>
+              <h3 class="display story-title">Offline intelligence. Ready wherever learning happens.</h3>
+              <p class="tab-feedback" aria-live="polite">Chat, study, listen and work with your documents using powerful AI that runs completely offline.</p>
               <a class="primary-btn" href="https://kuphanda.afrisoft.store/">Explore Kuphanda <i class="fa-solid fa-arrow-right"></i></a>
             </div>
             <div class="product-image">
-              <img src="assets/kuphanda-learning.png" alt="Two learners using Kuphanda AI together on a tablet">
+              <img class="story-image" src="assets/kuphanda-overview.webp" alt="Kuphanda AI overview with chat and Kuphanda Listen">
             </div>
           </div>
         </article>
 
         <article class="product-card livcast-card reveal" id="livcast">
           <div class="product-head">
-            <div class="product-mark"><i class="fa-solid fa-circle-play" aria-hidden="true"></i>LivCast Go</div>
-            <div class="product-tabs" aria-label="LivCast information">
-              <button class="product-tab active" type="button" data-message="Go live, switch scenes and engage your audience from one mobile production workspace.">Overview</button>
-              <button class="product-tab" type="button" data-message="Connect cameras, add overlays, display scriptures and direct every moment with confidence.">Features</button>
-              <button class="product-tab" type="button" data-message="Built for churches, ministries, schools, creators and teams that need reliable live storytelling.">Use Cases</button>
-              <button class="product-tab" type="button" data-message="Designed for practical mobile production with cloud-ready sharing and multi-platform reach.">Tech Specs</button>
+            <div class="product-mark"><i class="fa-solid fa-circle-play" aria-hidden="true"></i>LivCast</div>
+            <div class="product-tabs" aria-label="LivCast information" role="tablist">
+              <button class="product-tab active" role="tab" aria-selected="true" type="button" data-title="Bring worship and scripture into one live story." data-message="Direct services with multiple cameras, ready-made ministry graphics and the built-in KJV Bible for live verse overlays." data-image="assets/livcast-church.webp" data-alt="A church congregation joining a LivCast worship broadcast">Churches</button>
+              <button class="product-tab" role="tab" aria-selected="false" type="button" data-title="Every important angle. One unforgettable ceremony." data-message="Connect a mobile camera crew and capture entrances, reactions and the moments families will want to remember." data-image="assets/livcast-wedding.webp" data-alt="A wedding ceremony prepared for multi-camera LivCast coverage">Weddings</button>
+              <button class="product-tab" role="tab" aria-selected="false" type="button" data-title="A production room without the expensive walls." data-message="LivCast Studio connects up to 20 Camera Man devices alongside DSLR and cinema cameras for demanding productions." data-image="assets/livcast-studio.webp" data-alt="Professional LivCast Studio setup with cameras and a production desk">Studio Crews</button>
+              <button class="product-tab" role="tab" aria-selected="false" type="button" data-title="A complete studio for the creator on the move." data-message="Switch scenes, guide operators, control zoom and torch, and stream to Facebook, YouTube and more." data-image="assets/livcast-creator.webp" data-alt="Creator presenting a LivCast multi-camera production setup">Creators</button>
             </div>
           </div>
           <div class="product-grid">
             <div class="product-copy">
-              <h2 class="display">LivCast Go</h2>
-              <h3 class="display">Your broadcast studio. Now it goes with you.</h3>
-              <p class="tab-feedback" aria-live="polite">Go live, switch scenes and engage your audience from one mobile production workspace.</p>
+              <h2 class="display">LivCast</h2>
+              <h3 class="display story-title">Bring worship and scripture into one live story.</h3>
+              <p class="tab-feedback" aria-live="polite">Direct services with multiple cameras, ready-made ministry graphics and the built-in KJV Bible for live verse overlays.</p>
               <a class="primary-btn" href="https://livcast.afrisoft.store/">Explore LivCast Go <i class="fa-solid fa-arrow-right"></i></a>
             </div>
             <div class="product-image">
-              <img src="assets/livcast-family.png" alt="A family joining a live online broadcast together">
+              <img class="story-image" src="assets/livcast-church.webp" alt="A church congregation joining a LivCast worship broadcast">
             </div>
           </div>
           <div class="feature-row" aria-label="LivCast features">
-            <div class="feature"><i class="fa-solid fa-tower-broadcast"></i><h4>Live anywhere</h4><p>Stream in high quality from almost any network.</p></div>
-            <div class="feature"><i class="fa-solid fa-table-cells-large"></i><h4>Smart switching</h4><p>Move between cameras, scenes and sources.</p></div>
-            <div class="feature"><i class="fa-solid fa-users"></i><h4>Audience engagement</h4><p>Bring chats, polls and reactions into the moment.</p></div>
-            <div class="feature"><i class="fa-solid fa-cloud-arrow-up"></i><h4>Cloud ready</h4><p>Record, store and share your production.</p></div>
+            <div class="feature"><i class="fa-solid fa-camera"></i><h4>Every camera connected</h4><p>Use 4 operators on Go, 8 on Tab or up to 20 on Studio.</p></div>
+            <div class="feature"><i class="fa-solid fa-message"></i><h4>Direct the crew</h4><p>Message one operator or everyone, with remote zoom and torch control.</p></div>
+            <div class="feature"><i class="fa-solid fa-book-bible"></i><h4>Scripture & graphics</h4><p>Show KJV verses, countdowns and ministry templates live.</p></div>
+            <div class="feature"><i class="fa-solid fa-tower-broadcast"></i><h4>Go live anywhere</h4><p>Reach Facebook, YouTube and other streaming destinations.</p></div>
           </div>
         </article>
       </div>
@@ -401,6 +406,7 @@
           <p class="eyebrow">Why Afrisoft</p>
           <h2 class="display">African perspective.<br><span class="accent">Global ambition.</span></h2>
           <p>We build technology around real constraints, real communities and real creative ambition. Our products start in Malawi and are engineered to travel much further.</p>
+          <a class="secondary-btn" href="about.html">Meet the Afrisoft team <i class="fa-solid fa-arrow-right"></i></a>
         </div>
         <div class="values">
           <div class="value reveal"><i class="fa-solid fa-earth-africa"></i><h3>Built close to the problem</h3><p>Local insight shapes products that stay practical and relevant.</p></div>
@@ -429,7 +435,7 @@
   <footer>
     <div class="shell footer-row">
       <a class="footer-brand" href="#top">AFRISOFT</a>
-      <div class="footer-links"><span>© <span id="year"></span> Afrisoft</span><a href="#about">Company</a><a href="#ecosystem">Products</a><a href="#contact">Contact</a></div>
+      <div class="footer-links"><span>© <span id="year"></span> Afrisoft</span><a href="about.html">Company</a><a href="#ecosystem">Products</a><a href="#contact">Contact</a><a href="terms.html">Terms</a></div>
       <div class="socials"><a href="https://chat.whatsapp.com/Ht6ePNMoHxuERBm84HO4Bh" target="_blank" rel="noopener" aria-label="Afrisoft on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a><a href="https://www.youtube.com/channel/UCRL4EVR-IULfQy4XwHM9nAQ" target="_blank" rel="noopener" aria-label="Afrisoft on YouTube"><i class="fa-brands fa-youtube"></i></a></div>
     </div>
   </footer>
@@ -475,16 +481,92 @@
       }
     });
 
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     document.querySelectorAll('.product-tabs').forEach(tabGroup => {
       const card = tabGroup.closest('.product-card');
+      const tabs = [...tabGroup.querySelectorAll('.product-tab')];
+      const title = card.querySelector('.story-title');
       const feedback = card.querySelector('.tab-feedback');
-      tabGroup.querySelectorAll('.product-tab').forEach(tab => {
+      const storyImage = card.querySelector('.story-image');
+      let activeIndex = 0;
+      let rotation;
+      let imageSwap;
+
+      tabs.forEach(tab => {
+        const preload = new Image();
+        preload.src = tab.dataset.image;
+      });
+
+      function activateStory(index, immediate = false) {
+        activeIndex = (index + tabs.length) % tabs.length;
+        const tab = tabs[activeIndex];
+
+        tabs.forEach((item, itemIndex) => {
+          const selected = itemIndex === activeIndex;
+          item.classList.toggle('active', selected);
+          item.setAttribute('aria-selected', String(selected));
+          item.tabIndex = selected ? 0 : -1;
+        });
+
+        title.textContent = tab.dataset.title;
+        feedback.textContent = tab.dataset.message;
+
+        window.clearTimeout(imageSwap);
+        if (immediate || reduceMotion) {
+          storyImage.src = tab.dataset.image;
+          storyImage.alt = tab.dataset.alt;
+          storyImage.classList.toggle('fit-contain', tab.dataset.fit === 'contain');
+          storyImage.classList.remove('switching');
+          return;
+        }
+
+        storyImage.classList.add('switching');
+        imageSwap = window.setTimeout(() => {
+          storyImage.src = tab.dataset.image;
+          storyImage.alt = tab.dataset.alt;
+          storyImage.classList.toggle('fit-contain', tab.dataset.fit === 'contain');
+          requestAnimationFrame(() => storyImage.classList.remove('switching'));
+        }, 220);
+      }
+
+      function stopRotation() {
+        window.clearInterval(rotation);
+      }
+
+      function startRotation() {
+        stopRotation();
+        if (!reduceMotion) rotation = window.setInterval(() => activateStory(activeIndex + 1), 6000);
+      }
+
+      tabs.forEach((tab, index) => {
         tab.addEventListener('click', () => {
-          tabGroup.querySelectorAll('.product-tab').forEach(item => item.classList.remove('active'));
-          tab.classList.add('active');
-          feedback.textContent = tab.dataset.message;
+          activateStory(index);
+          startRotation();
+        });
+        tab.addEventListener('keydown', event => {
+          if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+          event.preventDefault();
+          let next = activeIndex;
+          if (event.key === 'ArrowLeft') next -= 1;
+          if (event.key === 'ArrowRight') next += 1;
+          if (event.key === 'Home') next = 0;
+          if (event.key === 'End') next = tabs.length - 1;
+          activateStory(next);
+          tabs[activeIndex].focus();
+          startRotation();
         });
       });
+
+      card.addEventListener('mouseenter', stopRotation);
+      card.addEventListener('mouseleave', startRotation);
+      card.addEventListener('focusin', stopRotation);
+      card.addEventListener('focusout', event => {
+        if (!card.contains(event.relatedTarget)) startRotation();
+      });
+
+      activateStory(0, true);
+      startRotation();
     });
 
     const form = document.getElementById('contact-form');
@@ -494,7 +576,6 @@
       form.reset();
     });
 
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduceMotion) {
       document.querySelectorAll('.reveal').forEach(item => item.classList.add('visible'));
     } else {
